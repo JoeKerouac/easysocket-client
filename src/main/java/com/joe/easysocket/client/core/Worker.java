@@ -5,6 +5,8 @@ import com.joe.easysocket.client.ext.Logger;
 import com.joe.easysocket.client.ext.Serializer;
 
 /**
+ * 工作器
+ *
  * @author joe
  */
 public abstract class Worker {
@@ -29,7 +31,7 @@ public abstract class Worker {
     }
 
     /**
-     * 关闭读取线程
+     * 关闭 读取/发送 线程
      *
      * @return 返回true表示关闭成功，返回false表示当前已经关闭（重复关闭）
      */
@@ -37,6 +39,7 @@ public abstract class Worker {
         if (isShutdown()) {
             return false;
         }
+        logger.debug("读取/发送 线程关闭");
         //必须先将shutdown置为true，work线程的正常中断依赖于该变量
         shutdown = true;
         worker.interrupt();

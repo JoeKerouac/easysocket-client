@@ -11,6 +11,7 @@
 
     <properties>
         <lombok.version>1.16.10</lombok.version>
+        <utils.version>1.1</utils.version>
     </properties>
 
     <dependencies>
@@ -20,6 +21,13 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- 常用工具类，测试使用，使用其中的JSON解析器 -->
+        <dependency>
+            <groupId>com.github.935237604</groupId>
+            <artifactId>utils</artifactId>
+            <version>${utils.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

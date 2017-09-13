@@ -4,6 +4,7 @@ import com.joe.easysocket.client.core.EventListener;
 import com.joe.easysocket.client.core.Reader;
 import com.joe.easysocket.client.core.SocketEvent;
 import com.joe.easysocket.client.core.Writer;
+import com.joe.easysocket.client.exception.NoRequireParamException;
 import com.joe.easysocket.client.ext.InternalLogger;
 import com.joe.easysocket.client.ext.Logger;
 import com.joe.easysocket.client.ext.Serializer;
@@ -83,9 +84,16 @@ public class Client {
     @Builder
     private Client(String host, int port, Logger logger, Serializer serializer,
                    EventListener listener, int heartbeat) {
-        if (host == null || host.trim().isEmpty() || port <= 0 || serializer == null) {
-            throw new IllegalArgumentException("客户端参数缺失，请检查您的参数");
+        if (host == null || host.trim().isEmpty()) {
+            throw new NoRequireParamException("host");
         }
+        if(port < 0){
+            throw new IllegalArgumentException("port不能小于等于0");
+        }
+        if (serializer == null) {
+            throw new NoRequireParamException("serializer");
+        }
+
         this.host = host;
         this.port = port;
         this.logger = logger == null ? DEFAULT : logger;

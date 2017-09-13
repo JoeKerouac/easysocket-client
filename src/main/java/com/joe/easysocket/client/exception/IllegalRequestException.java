@@ -8,10 +8,6 @@ package com.joe.easysocket.client.exception;
 public class IllegalRequestException extends SystemException {
     private static final long serialVersionUID = 855898103206510828L;
 
-    public IllegalRequestException(String cause) {
-        super("非法请求：" + cause);
-    }
-
     public IllegalRequestException(Throwable cause) {
         super("非法请求：", cause);
     }

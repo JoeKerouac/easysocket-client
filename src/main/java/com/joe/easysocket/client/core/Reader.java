@@ -30,7 +30,7 @@ public class Reader extends Worker {
     //缓冲区大小
     private int bufferSize;
     //线程池
-    private ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+    private ExecutorService service;
 
 
     /**
@@ -49,6 +49,7 @@ public class Reader extends Worker {
         this.input = input;
         this.listener = listener;
         this.bufferSize = 1024;
+        this.service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
     }
 
     /**

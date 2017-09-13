@@ -83,8 +83,8 @@ public class Writer extends Worker {
      * @throws IOException
      */
     private void write() throws InterruptedException, IOException {
-        Msg msg = null;
         while (!isShutdown()) {
+            Msg msg = null;
             try {
                 msg = queue.take();
                 logger.debug("收到消息：" + msg + "，准备发往服务器");
