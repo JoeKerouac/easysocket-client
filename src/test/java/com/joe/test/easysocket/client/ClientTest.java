@@ -104,7 +104,7 @@ public class ClientTest {
                 (listener).logger
                 (logger).build();
         client.start();
-        JsonObject object = new JsonObject().data("openid", "123").data("account", "456").data("password", "789");
+        JsonObject object = new JsonObject().data("openid", 120).data("account", "456").data("password", "789");
         client.write("user/login", object.toJson());
     }
 }
