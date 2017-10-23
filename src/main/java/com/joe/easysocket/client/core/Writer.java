@@ -96,7 +96,7 @@ public class Writer extends Worker {
                 } else {
                     //普通接口请求包
                     InterfaceData interfaceData = new InterfaceData(String.valueOf(System.currentTimeMillis()), msg
-                            .getInvoke(), new String(serializer.write(msg.getData())));
+                            .getInvoke(), msg.getData() != null ? new String(serializer.write(msg.getData())) : null);
                     datagram = datagramUtil.build(serializer.write(interfaceData), (byte) 1, (byte) 1);
                 }
                 logger.debug("消息封装为数据报后是：" + datagram);
