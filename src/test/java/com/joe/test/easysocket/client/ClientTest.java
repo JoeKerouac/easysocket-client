@@ -2,12 +2,13 @@ package com.joe.test.easysocket.client;
 
 import com.joe.easysocket.client.Client;
 import com.joe.easysocket.client.core.EventListener;
-import com.joe.easysocket.client.ext.EventListenerAdapter;
 import com.joe.easysocket.client.data.InterfaceData;
+import com.joe.easysocket.client.ext.EventListenerAdapter;
 import com.joe.easysocket.client.ext.Logger;
 import com.joe.easysocket.client.ext.Serializer;
-import com.joe.parse.json.JsonObject;
-import com.joe.parse.json.JsonParser;
+import com.joe.utils.concurrent.ThreadUtil;
+import com.joe.utils.parse.json.JsonObject;
+import com.joe.utils.parse.json.JsonParser;
 
 /**
  * @author joe
@@ -20,6 +21,11 @@ public class ClientTest {
         Serializer serializer = new Serializer() {
             @Override
             public byte[] write(Object obj) {
+                if (obj instanceof byte[]) {
+                    return (byte[])obj;
+                }else if(obj instanceof String){
+                    return ((String)obj).getBytes();
+                }
                 return parser.toJson(obj).getBytes();
             }
 
@@ -104,7 +110,13 @@ public class ClientTest {
                 (listener).logger
                 (logger).build();
         client.start();
-        JsonObject object = new JsonObject().data("openid", 120).data("account", "456").data("password", "789");
+        JsonObject object = new JsonObject().data("account", 123).data("password", "345");
         client.write("user/login", object.toJson());
+
+        ThreadUtil.sleep(3);
+        while (true) {
+            client.write("user/print", null);
+            ThreadUtil.sleep(30);
+        }
     }
 }

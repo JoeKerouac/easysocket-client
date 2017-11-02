@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.joe.easysocket</groupId>
-    <artifactId>tbkClient</artifactId>
+    <artifactId>client</artifactId>
     <version>1.0</version>
 
 
     <properties>
         <lombok.version>1.16.10</lombok.version>
-        <utils.version>1.1</utils.version>
+        <utils.version>1.4</utils.version>
     </properties>
 
     <dependencies>
